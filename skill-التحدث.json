@@ -1,0 +1,415 @@
+{
+  "intents": [
+    {
+      "intent": "الطعام",
+      "examples": [
+        {
+          "text": "ايش المينيو عندكم"
+        },
+        {
+          "text": "ايش نوع الاطعمه المتوفره"
+        },
+        {
+          "text": "كم الاطباق لديكم"
+        },
+        {
+          "text": "ما نوع الاطباق التي تقدمونها"
+        },
+        {
+          "text": "هل في اطعمة ايطاليا"
+        },
+        {
+          "text": "هل فيه حلويات"
+        }
+      ],
+      "description": "ايش نوع الاطعمه المتوفره"
+    },
+    {
+      "intent": "تاكيد",
+      "examples": [
+        {
+          "text": "لاربعه اشخاص"
+        },
+        {
+          "text": "لثلاثه اشخاص"
+        },
+        {
+          "text": "لخمسه اشخاص"
+        },
+        {
+          "text": "لشخص واحد"
+        },
+        {
+          "text": "لشخصين"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "ترحيب",
+      "examples": [
+        {
+          "text": "السلام عليكم"
+        },
+        {
+          "text": "اهلا"
+        },
+        {
+          "text": "اهلين"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هلا"
+        },
+        {
+          "text": "هل يمكنك مساعدتي"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "حجز",
+      "examples": [
+        {
+          "text": "٢"
+        },
+        {
+          "text": "ابا احجز"
+        },
+        {
+          "text": "ثلاثه اشخاص"
+        },
+        {
+          "text": "فيه حجز"
+        },
+        {
+          "text": "متوفر حجز"
+        },
+        {
+          "text": "هل هناك حجز"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "حجز",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "ايش نوع الاطعمه",
+          "synonyms": [
+            "ايش المانيوال عندكم",
+            "ما نوع الاطباع"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "هل هناك حجز متوفر",
+          "synonyms": [
+            "عندكم حجز",
+            "فيه حجز",
+            "متوفر حجز",
+            "هل يحتاج حجز"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ما الوقت الذي تفضلونه"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_7_1625186033666",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1625186033668",
+      "previous_sibling": "handler_5_1625186033668"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1625186113113",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_1_1625186113113"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1625186033666",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_5_1625186033668"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "كم عدد الاشخاص"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_4_1625186113113",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1625186113113",
+      "previous_sibling": "handler_1_1625186113113"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ما اليوم المناسب"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_5_1625185957382",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1625185957402",
+      "previous_sibling": "handler_9_1625185957402"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1625185957382",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_9_1625185957402"
+    },
+    {
+      "type": "standard",
+      "title": "ترحيب",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ي هلا تفضل"
+              },
+              {
+                "text": "اسالني"
+              },
+              {
+                "text": "شرفتنا نحن بخدمتك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#ترحيب",
+      "dialog_node": "node_1_1625168079740",
+      "previous_sibling": "مرحبا"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "تفضل بزياره صفحتنا على الانستقرام لمعرفه المينيو"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#الطعام",
+      "dialog_node": "node_3_1625175791765",
+      "previous_sibling": "node_5_1625186726829"
+    },
+    {
+      "type": "frame",
+      "title": "حجز",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "نعم تفضل"
+              },
+              {
+                "text": "ما الوقت الذي تفضلونه؟"
+              },
+              {
+                "text": "حياكم الله ادخل الوقت المناسب لكم"
+              },
+              {
+                "text": " ادخل رقم الهاتف ليتم التواصل معكم و تاكيد الحجز شاكرين لكم اختيارنا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#حجز",
+      "dialog_node": "node_5_1625173459461",
+      "previous_sibling": "node_1_1625168079740"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ادخل رقم الهاتف ليتم التواصل معك وتاكيد الحجز شاكرين لكم اختيارنا"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#تاكيد",
+      "dialog_node": "node_5_1625186726829",
+      "previous_sibling": "node_5_1625173459461"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1625173459461",
+      "variable": "$number",
+      "dialog_node": "slot_4_1625186113113",
+      "previous_sibling": "slot_7_1625186033666"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1625173459461",
+      "variable": "$date",
+      "dialog_node": "slot_5_1625185957382"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1625173459461",
+      "variable": "$time",
+      "dialog_node": "slot_7_1625186033666",
+      "previous_sibling": "slot_5_1625185957382"
+    },
+    {
+      "type": "standard",
+      "title": "أي شيء آخر",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "لم أفهم، يمكنك محاولة اعادة الصياغة"
+              },
+              {
+                "text": "هل يمكنك اعادة صياغة عبارتك؟ أنا لا فهم"
+              },
+              {
+                "text": "لم أفهم قصدك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "أي شيء آخر",
+      "previous_sibling": "node_3_1625175791765",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "مرحبا",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "ي مرحبا  نحن بخدمتك"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "مرحبا"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": ":هل قصدت",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "كل ما سبق خطأ"
+    },
+    "human_agent_assist": {
+      "prompt": ":هل قصدت"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "التحدث",
+  "language": "ar",
+  "description": ""
+}
